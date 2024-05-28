@@ -1,3 +1,17 @@
 <h1 class="text-3xl font-bold underline">
   Hello world!
 </h1>
+
+@switch (api.eventsState()) {
+  @case ("loading") {
+    <div>loading...</div>
+  }
+  @case ("error") {
+    <div>error...</div>
+  }
+  @case ("loaded") {
+    @for (event of api.events(); track event.id) {
+      <div class="text-amber-800">{{ event.name ?? 'No name' }} {{ event.dateTime | date }}</div>
+    }
+  }
+}
