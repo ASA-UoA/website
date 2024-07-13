@@ -6,3 +6,10 @@ export type Event = {
   location?: string;
   image?: string;
 };
+
+export type Team = {
+  id: string;
+  name?: string;
+  role?: string;
+  image?: string;
+};

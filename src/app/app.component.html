@@ -1,17 +1,18 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
-
-@switch (api.eventsState()) {
+@switch (api.allLoaded()) {
   @case ("loading") {
-    <div>loading...</div>
+    <app-preloader/>
   }
   @case ("error") {
-    <div>error...</div>
+    <app-error [@fadeInOut]/>
   }
   @case ("loaded") {
     @for (event of api.events(); track event.id) {
       <div class="text-amber-800">{{ event.name ?? 'No name' }} {{ event.dateTime | date }}</div>
     }
+
+    @for (team of api.team(); track team.id) {
+      <div class="text-amber-800">{{ team.name ?? 'No name' }} {{ team.role }}</div>
+    }
   }
 }
+
