@@ -11,7 +11,6 @@ import {FadeInOut} from "./animations/fade-in-out";
   standalone: true,
   imports: [RouterOutlet, DatePipe, PreloaderComponent, ErrorComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
   animations: [FadeInOut('0ms', '300ms ease-out', false)]
 })
 export class AppComponent implements OnInit {
