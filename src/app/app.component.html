@@ -1,6 +1,6 @@
 @switch (api.allLoaded()) {
   @case ("loading") {
-    <app-preloader/>
+    <app-preloader [@fadeInOut]/>
   }
   @case ("error") {
     <app-error [@fadeInOut]/>

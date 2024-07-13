@@ -1,6 +1,6 @@
 import {animate, AnimationTriggerMetadata, style, transition, trigger} from "@angular/animations";
 
-export function FadeInOut(timingIn: number, timingOut: number, height: boolean = false): AnimationTriggerMetadata {
+export function FadeInOut(timingIn: string, timingOut: string, height: boolean = false): AnimationTriggerMetadata {
   return trigger('fadeInOut', [
     transition(':enter', [
       style(height ? {opacity: 0, height: 0,} : {opacity: 0,}),

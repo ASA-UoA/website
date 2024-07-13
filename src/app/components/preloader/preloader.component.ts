@@ -1,9 +1,12 @@
 import {Component, HostBinding} from '@angular/core';
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-preloader',
   standalone: true,
-  imports: [],
+  imports: [
+    NgOptimizedImage
+  ],
   templateUrl: 'preloader.component.html'
 })
 export class PreloaderComponent {
