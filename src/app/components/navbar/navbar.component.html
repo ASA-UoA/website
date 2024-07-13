@@ -1,13 +1,15 @@
 <img class="h-[40px]" src="assets/images/logo-red.png"/>
-<div class="ml-auto">
+<div [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="'active'" [routerLink]="['/']" class="btn ml-auto">
   Home
 </div>
-<div>
+<div [routerLinkActive]="'active'" [routerLink]="['/events']" class="btn">
   Events
 </div>
-<div>
+<div [routerLinkActive]="'active'" [routerLink]="['/team']" class="btn">
   Team
 </div>
-<div>
+<a class="btn"
+   href="https://docs.google.com/document/d/1_KaMuSjlQd_eWI54Fv__c7LTDWmeziLsh9Kj0ayjmYE/edit?usp=drive_link"
+   target="_blank">
   Sign up!
-</div>
+</a>
