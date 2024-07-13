@@ -6,6 +6,8 @@
     <app-error [@fadeInOut]/>
   }
   @case ("loaded") {
+    <app-navbar #navbarComponent/>
+    <div class="h-[72px]" [style.height]="navbarComponent"></div>
     <router-outlet/>
   }
 }

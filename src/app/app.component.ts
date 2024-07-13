@@ -5,11 +5,12 @@ import {DatePipe} from "@angular/common";
 import {PreloaderComponent} from "./components/preloader/preloader.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {FadeInOut} from "./animations/fade-in-out";
+import {NavbarComponent} from "./components/navbar/navbar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DatePipe, PreloaderComponent, ErrorComponent],
+  imports: [RouterOutlet, DatePipe, PreloaderComponent, ErrorComponent, NavbarComponent],
   templateUrl: './app.component.html',
   animations: [FadeInOut('0ms', '300ms ease-out', false)]
 })

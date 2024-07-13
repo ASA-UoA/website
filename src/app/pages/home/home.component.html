@@ -1,4 +1,63 @@
-<p>home works!</p>
-<div class="size-24 bg-red-400">
+<div class="h-[450px] w-full max-h-svh bg-red-400 grid place-items-center">
+  <img class="h-96" src="assets/images/logo-red.png"/>
 </div>
-<div [routerLink]="['/team']">team</div>
+
+<div>
+  @if (upcomingEvents()[0]; as nextEvent) {
+
+    <h2>
+      Next Event
+    </h2>
+    <h1>
+      {{ nextEvent.name }}
+    </h1>
+    <p>
+      countdown
+    </p>
+  }
+
+</div>
+
+<div>
+  <h2>
+    Upcoming Events
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    @for (event of upcomingEvents(); track event.id; let first = $first) {
+      @if (!first) {
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <h3>
+            {{ event.name }}
+          </h3>
+          <p>
+            {{ event.dateTime }}
+          </p>
+        </div>
+      }
+    }
+  </div>
+</div>
+
+<div>
+  <h2>
+    Team
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    @for (member of api.team(); track member.id) {
+      <div class="bg-white p-4 rounded-lg shadow-md">
+        <h3>
+          {{ member.name }}
+        </h3>
+        <p>
+          {{ member.role }}
+        </p>
+      </div>
+    }
+  </div>
+
+  <div>
+    <a routerLink="/team">View all Team Members</a>
+  </div>
+</div>
+
+
