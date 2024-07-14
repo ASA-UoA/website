@@ -1,16 +1,14 @@
 @if (event(); as event) {
   <img [src]="event.image" class="w-full shadow-md max-h-72 object-cover"/>
 
-  <div>
-    {{ event.name }}
-  </div>
-  <div>
-    {{ event.dateTime | date: 'EEEE d MMMM' }}
-  </div>
+  <div class="px-6 mx-auto max-w-[800px]">
+    <div>
+      {{ event.name }}
+    </div>
+    <div>
+      {{ event.dateTime | date: 'EEEE d MMMM' }}
+    </div>
 
-  <markdown class="reset-tw" [data]="event.description"/>
+    <markdown class="reset-tw" [data]="event.description"/>
+  </div>
 }
-
-
-
-{{ event() | json }}
