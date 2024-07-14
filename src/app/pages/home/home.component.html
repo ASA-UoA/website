@@ -1,46 +1,56 @@
 <div class="h-[450px] w-full max-h-svh bg-red-200 grid place-items-center">
-  <img class="h-[40%]" src="assets/images/logo-red.png"/>
+  <img alt="asa-uoa-logo" class="h-[40%]" src="assets/images/logo-red.png"/>
 </div>
 
 <div class="px-6 py-12 text-center">
   @if (upcomingEvents()[0]; as nextEvent) {
-    <h2 class="text-xl">
-      Next Event coming!
+    <h2 class="text-2xl">
+      Next Event
     </h2>
     <h1 class="text-4xl font-extrabold">
       {{ nextEvent.name }}
     </h1>
     <p>
-      <app-countdown [timeLeft]="60*60*24 + 3"/>
+      <app-countdown [timeLeft]="timeLeft() / 1000"/>
     </p>
   }
 </div>
 
-<div>
-  <h2>
-    Upcoming Events
-  </h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="px-6 mx-auto max-w-[800px] mb-20 space-y-8">
+  <div class="flex flex-row justify-between items-center">
+    <h2 class="text-2xl">
+      Upcoming Events
+    </h2>
+    <a class="btn">
+      View all events
+    </a>
+  </div>
+  <div class="flex flex-row gap-4">
     @for (event of upcomingEvents(); track event.id; let first = $first) {
-      @if (!first) {
-        <div class="bg-white p-4 rounded-lg shadow-md">
-          <h3>
-            {{ event.name }}
-          </h3>
-          <p>
-            {{ event.dateTime }}
-          </p>
-        </div>
-      }
+      <div
+        class="bg-white rounded-2xl overflow-hidden shadow-md space-y-3 pb-4 max-w-72 hover:scale-105 active:scale-95 cursor-pointer hover:shadow-2xl transition">
+        <img
+          [alt]="event.name"
+          class="aspect-[3/2]"
+          draggable="false"
+          [src]="event.image"
+        />
+        <h3 class="text-xl font-bold mx-5">
+          {{ event.name }}
+        </h3>
+        <p class="mx-5">
+          {{ event.dateTime | date: 'h:mm:ss dd/MM/yyyy' }}
+        </p>
+      </div>
     }
   </div>
 </div>
 
-<div>
-  <h2>
+<div class="px-6 mx-auto max-w-[800px]">
+  <h2 class="text-2xl">
     Team
   </h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="flex flex-row gap-4">
     @for (member of api.team(); track member.id) {
       <div class="bg-white p-4 rounded-lg shadow-md">
         <h3>

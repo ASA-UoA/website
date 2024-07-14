@@ -28,7 +28,7 @@ export class CustomCountdownComponent implements OnInit {
   ngOnInit() {
     this.config = {
       leftTime: this.timeLeft(),
-      format: 'DD HH:mm:ss',
+      format: 'D H:mm:ss',
       formatDate: ({date, formatStr}) => {
         let duration = Number(date || 0);
 
@@ -37,17 +37,19 @@ export class CustomCountdownComponent implements OnInit {
             const v = Math.floor(duration / unit);
             duration -= v * unit;
             return current.replace(new RegExp(`${name}+`, 'g'), (match: string) => {
-              // When days is empty
               if (name === 'D' && v <= 0) {
-                return '';
+                return ''; // If there are no days, return an empty string
               }
               return v.toString().padStart(match.length, '0');
             });
           }
           return current;
-        }, formatStr);
+        }, formatStr).trim();
       },
-    };
+      prettyText: (text) => {
+        return text.replace(/ /g, ' days ');
+      }
+    }
   }
 
 }
