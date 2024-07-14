@@ -25,4 +25,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          ng deploy --repo=https://github.com/ASA-UoA/website.git --name="JoshuaMorley" --email=jmor490@aucklanduni.ac.nz;
+          ng deploy --repo=https://github.com/ASA-UoA/website.git --name="JoshuaMorley" --email=jmor490@aucklanduni.ac.nz --cname=asauoa.nz;
