@@ -19,11 +19,10 @@ jobs:
           npm install
           npm run build
           npm install -g @angular/cli
-          ng add angular-cli-ghpages
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npx angular-cli-ghpages --base-href=/website/ --repo=https://github.com/ASA-UoA/website.git;
+          ng deploy --base-href=/website/ --repo=https://github.com/ASA-UoA/website.git;
