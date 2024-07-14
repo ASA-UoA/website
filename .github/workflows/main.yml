@@ -18,6 +18,8 @@ jobs:
         run: |
           npm install
           npm run build
+          npm install -g @angular/cli
+          ng add angular-cli-ghpages
 
       - name: Deploy
         if: github.ref == 'refs/heads/main'
