@@ -89,7 +89,7 @@ export class ApiService {
         id: line[headers.indexOf('id')],
         name: line[headers.indexOf('name')],
         role: line[headers.indexOf('role')],
-        image: line[headers.indexOf('image')],
+        image: line[headers.indexOf('image')] === '' ? undefined : line[headers.indexOf('image')],
         exec: line[headers.indexOf('exec')] === 'TRUE'
       };
     });
