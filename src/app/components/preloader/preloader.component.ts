@@ -1,8 +1,12 @@
 import {Component, HostBinding} from '@angular/core';
+import {SpinnerComponent} from "../spinner/spinner.component";
 
 @Component({
   selector: 'app-preloader',
   standalone: true,
+  imports: [
+    SpinnerComponent
+  ],
   templateUrl: 'preloader.component.html'
 })
 export class PreloaderComponent {
