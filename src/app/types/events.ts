@@ -3,8 +3,10 @@ export type Event = {
   name?: string;
   description?: string;
   dateTime: Date;
+  endDateTime?: Date;
   location?: string;
   image?: string;
+  calendar?: string;
 };
 
 export type Team = {

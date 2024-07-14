@@ -70,9 +70,11 @@ export class ApiService {
         id: line[headers.indexOf('id')],
         name: line[headers.indexOf('name')],
         description: line[headers.indexOf('description')],
-        dateTime: parse(line[headers.indexOf('date')], 'dd/MM/yyyy', new Date()),
+        dateTime: parse(line[headers.indexOf('date')] + " " + line[headers.indexOf('time')], 'dd/MM/yyyy HH:mm', new Date()),
+        endDateTime: parse(line[headers.indexOf('endDate')] + " " + line[headers.indexOf('endTime')], 'dd/MM/yyyy HH:mm', new Date()),
         location: line[headers.indexOf('location')],
         image: line[headers.indexOf('image')],
+        calendar: line[headers.indexOf('calendar')]
       };
     });
   }

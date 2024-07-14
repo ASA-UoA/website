@@ -1,14 +1,21 @@
 @if (event(); as event) {
   <img [src]="event.image" class="w-full shadow-md max-h-72 object-cover"/>
 
-  <div class="px-6 mx-auto max-w-[800px]">
-    <div>
+  <div class="px-6 mx-auto max-w-[800px] reset-tw">
+    <h1>
       {{ event.name }}
-    </div>
-    <div>
-      {{ event.dateTime | date: 'EEEE d MMMM' }}
-    </div>
+    </h1>
+    <h4>
+      {{ event.dateTime | date: "EEEE d MMMM '@' h:mmaaa" }}
+      - {{ event.endDateTime | date: sameDayEvent() ? "h:mmaaa" : "EEEE d MMMM '@' h:mmaaa" }}
+    </h4>
 
     <markdown class="reset-tw" [data]="event.description"/>
+
+    @if (event.calendar; as calendarLink) {
+      <a [href]="calendarLink" target="_blank">
+        Add to Google Calendar
+      </a>
+    }
   </div>
 }
