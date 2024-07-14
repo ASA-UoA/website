@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Event, Team} from "../types/events";
 import {parse} from "date-fns";
 import {LoadingStatuses} from "../types/loading";
+import {NgxCsvParser} from "ngx-csv-parser";
 
 const eventsApi = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSLnt3e8qGXsZb8vpVrKKGaABV1AGZDLAWblflGL9Lw0ZtpW59rk5fUnhBiHb6LejZpJmS3WOP4rM-o/pub?gid=0&single=true&output=csv'
 const teamApi = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSLnt3e8qGXsZb8vpVrKKGaABV1AGZDLAWblflGL9Lw0ZtpW59rk5fUnhBiHb6LejZpJmS3WOP4rM-o/pub?gid=1073982170&single=true&output=csv'
@@ -13,6 +14,7 @@ const teamApi = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSLnt3e8qGXsZb8
 export class ApiService {
   // Deps
   http = inject(HttpClient);
+  parser = inject(NgxCsvParser);
 
   // Signals
   events = signal<Event[]>([]);
@@ -58,37 +60,35 @@ export class ApiService {
     });
   }
 
-  private parseEventCSV(data: ArrayBuffer): (Event)[] {
+  private parseEventCSV(arrayBuffer: ArrayBuffer): (Event)[] {
     const decoder = new TextDecoder('utf-8');
-    const csv = decoder.decode(new Uint8Array(data));
-    const lines = csv.split('\n');
-    const headers = lines[0].split(',');
-    return lines.slice(1).map((line) => {
-      const split = line.split(',');
+    const csv = decoder.decode(new Uint8Array(arrayBuffer));
+    const data = this.parser.csvStringToArray(csv, ',');
+    const headers = this.parser.getHeaderArray(data);
+    return data.slice(1).map((line) => {
       return {
-        id: split[headers.indexOf('id')],
-        name: split[headers.indexOf('name')],
-        description: split[headers.indexOf('description')],
-        dateTime: parse(split[headers.indexOf('date')], 'dd/MM/yyyy', new Date()),
-        location: split[headers.indexOf('location')],
-        image: split[headers.indexOf('image')],
+        id: line[headers.indexOf('id')],
+        name: line[headers.indexOf('name')],
+        description: line[headers.indexOf('description')],
+        dateTime: parse(line[headers.indexOf('date')], 'dd/MM/yyyy', new Date()),
+        location: line[headers.indexOf('location')],
+        image: line[headers.indexOf('image')],
       };
     });
   }
 
-  private parseTeamCSV(data: ArrayBuffer): (Team)[] {
+  private parseTeamCSV(arrayBuffer: ArrayBuffer): (Team)[] {
     const decoder = new TextDecoder('utf-8');
-    const csv = decoder.decode(new Uint8Array(data));
-    const lines = csv.split('\n');
-    const headers = lines[0].split(',');
-    return lines.slice(1).map((line) => {
-      const split = line.split(',');
+    const csv = decoder.decode(new Uint8Array(arrayBuffer));
+    const data = this.parser.csvStringToArray(csv, ',');
+    const headers = this.parser.getHeaderArray(data);
+    return data.slice(1).map((line) => {
       return {
-        id: split[headers.indexOf('id')],
-        name: split[headers.indexOf('name')],
-        role: split[headers.indexOf('role')],
-        image: split[headers.indexOf('image')],
-        exec: split[headers.indexOf('exec')] === 'TRUE'
+        id: line[headers.indexOf('id')],
+        name: line[headers.indexOf('name')],
+        role: line[headers.indexOf('role')],
+        image: line[headers.indexOf('image')],
+        exec: line[headers.indexOf('exec')] === 'TRUE'
       };
     });
   }

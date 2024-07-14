@@ -21,6 +21,7 @@
     "date-fns": "^3.6.0",
     "marked": "^12.0.2",
     "ngx-countdown": "^18.0.0",
+    "ngx-csv-parser": "^2.0.0",
     "ngx-markdown": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

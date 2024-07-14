@@ -1,12 +1,15 @@
 import {Component, computed, inject, input} from '@angular/core';
 import {ApiService} from "../../../services/api.service";
-import {JsonPipe} from "@angular/common";
+import {DatePipe, JsonPipe} from "@angular/common";
+import {MarkdownComponent} from "ngx-markdown";
 
 @Component({
   selector: 'app-event',
   standalone: true,
   imports: [
-    JsonPipe
+    JsonPipe,
+    DatePipe,
+    MarkdownComponent
   ],
   templateUrl: './event.component.html',
 })
