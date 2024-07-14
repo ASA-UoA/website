@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-8 items-stretch mx-8">
+<div class="flex flex-col gap-8 items-stretch mx-8 mt-20">
   @for (event of sortedEvents(); track event.id; let even = $even) {
     <div
       [routerLink]="[event.id]"
@@ -7,22 +7,23 @@
       [class.flex-row-reverse]="even"
     >
 
-      <img
-        [alt]="event.name"
-        class="aspect-[3/2] max-w-72"
-        draggable="false"
-        [src]="event.image"
-      />
-      <div class="flex-1">
-
-        <h3 class="text-xl font-bold mx-5">
+      @if (event.image) {
+        <img
+          [alt]="event.name"
+          class="aspect-[3/2] max-w-72 object-cover "
+          draggable="false"
+          [src]="event.image"
+        />
+      }
+      <div class="flex-1 m-5">
+        <h3 class="text-xl font-bold">
           {{ event.name }}
         </h3>
-        <p class="mx-5">
-          @if (event.dateTime) {
-            {{ event.dateTime | date: 'EEEE d MMMM' }}
-          }
+        <p>
+          in {{ formatDistance(event.dateTime, Date.now()) }} ({{ event.dateTime | date: 'MMMM dd' }})
         </p>
+        <hr class="my-2"/>
+        <markdown class="line-clamp-3" [data]="event.description"/>
       </div>
     </div>
   }
