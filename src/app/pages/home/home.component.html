@@ -34,6 +34,7 @@
   <div class="flex flex-row gap-4">
     @for (event of upcomingEvents(); track event.id; let first = $first) {
       <div
+        [routerLink]="['/events', event.id]"
         class="bg-white rounded-2xl overflow-hidden shadow-md space-y-3 pb-4 max-w-72 hover:scale-105 active:scale-95 cursor-pointer hover:shadow-2xl transition">
         <img
           [alt]="event.name"
