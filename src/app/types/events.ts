@@ -9,7 +9,8 @@ export type Event = {
 
 export type Team = {
   id: string;
-  name?: string;
-  role?: string;
+  name: string;
+  role: string;
   image?: string;
+  exec: boolean;
 };

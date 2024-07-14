@@ -83,12 +83,12 @@ export class ApiService {
     const headers = lines[0].split(',');
     return lines.slice(1).map((line) => {
       const split = line.split(',');
-      console.log(split, headers)
       return {
         id: split[headers.indexOf('id')],
         name: split[headers.indexOf('name')],
         role: split[headers.indexOf('role')],
         image: split[headers.indexOf('image')],
+        exec: split[headers.indexOf('exec')] === 'TRUE'
       };
     });
   }

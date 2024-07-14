@@ -1,9 +1,10 @@
-import {Component, computed, inject} from '@angular/core';
+import {Component, computed, inject, signal} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {PreloaderComponent} from "../../components/preloader/preloader.component";
 import {ApiService} from "../../services/api.service";
 import {CustomCountdownComponent} from "../../components/countdown/countdown.component";
 import {DatePipe} from "@angular/common";
+import {HomeTeamCardComponent} from "../../components/home-team-card/home-team-card.component";
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ import {DatePipe} from "@angular/common";
     RouterLink,
     PreloaderComponent,
     CustomCountdownComponent,
-    DatePipe
+    DatePipe,
+    HomeTeamCardComponent
   ],
   templateUrl: './home.component.html',
 })
@@ -28,5 +30,15 @@ export class HomeComponent {
   timeLeft = computed(() => {
     const event = this.upcomingEvents()[0];
     return event ? event.dateTime.getTime() - Date.now() : 0;
+  });
+
+  today = signal(Date.now());
+
+  president = computed(() => {
+    return this.api.team().find((member) => member.role === 'President');
+  });
+
+  restOfTeam = computed(() => {
+    return this.api.team().filter((member) => member.role !== 'President' && member.exec);
   });
 }

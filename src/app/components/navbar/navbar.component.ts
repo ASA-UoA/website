@@ -12,5 +12,5 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 })
 export class NavbarComponent {
 
-  @HostBinding('class') classes = 'fixed top-0 left-0 w-full z-50 bg-white shadow-md flex flex-row items-center gap-8 px-4 py-4';
+  @HostBinding('class') classes = 'fixed top-0 left-0 w-full z-50 bg-white shadow-md flex flex-row items-center gap-4 px-4 py-4';
 }

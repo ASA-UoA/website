@@ -1,0 +1,12 @@
+@if (teamMember(); as teamMember) {
+  <img
+    [alt]="teamMember.name"
+    class="rounded-full h-24 w-24 overflow-hidden mx-auto mb-2"
+    [src]="teamMember.image"/>
+  <h2 class="text-xl font-bold mb-0.5">
+    {{ teamMember.name }}
+  </h2>
+  <h3>
+    {{ teamMember.role }}
+  </h3>
+}

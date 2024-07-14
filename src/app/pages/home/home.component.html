@@ -4,15 +4,21 @@
 
 <div class="px-6 py-12 text-center">
   @if (upcomingEvents()[0]; as nextEvent) {
-    <h2 class="text-2xl">
-      Next Event
-    </h2>
-    <h1 class="text-4xl font-extrabold">
-      {{ nextEvent.name }}
-    </h1>
-    <p>
-      <app-countdown [timeLeft]="timeLeft() / 1000"/>
-    </p>
+    @if (nextEvent.dateTime.getDate() === today()) {
+      <h2 class="text-2xl">
+        Today's Event
+      </h2>
+    } @else {
+      <h2 class="text-2xl">
+        Next Event
+      </h2>
+      <h1 class="text-4xl font-extrabold">
+        {{ nextEvent.name }}
+      </h1>
+      <p>
+        <app-countdown [timeLeft]="timeLeft() / 1000"/>
+      </p>
+    }
   }
 </div>
 
@@ -46,25 +52,24 @@
   </div>
 </div>
 
-<div class="px-6 mx-auto max-w-[800px]">
-  <h2 class="text-2xl">
-    Team
-  </h2>
-  <div class="flex flex-row gap-4">
-    @for (member of api.team(); track member.id) {
-      <div class="bg-white p-4 rounded-lg shadow-md">
-        <h3>
-          {{ member.name }}
-        </h3>
-        <p>
-          {{ member.role }}
-        </p>
-      </div>
-    }
+<div class="px-6 mx-auto max-w-[800px] mb-20 space-y-8">
+  <div class="flex flex-row justify-between items-center">
+    <h2 class="text-2xl">
+      Executive Team
+    </h2>
+    <a class="btn">
+      View all team members
+    </a>
   </div>
-
-  <div>
-    <a routerLink="/team">View all Team Members</a>
+  @if (president(); as president) {
+    <div>
+      <app-home-team-card [teamMember]="president"/>
+    </div>
+  }
+  <div class="flex flex-row gap-4 justify-evenly mt-3">
+    @for (member of restOfTeam(); track member.id) {
+      <app-home-team-card [teamMember]="member"/>
+    }
   </div>
 </div>
 
