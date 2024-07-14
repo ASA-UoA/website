@@ -6,6 +6,7 @@ import {CustomCountdownComponent} from "../../components/countdown/countdown.com
 import {DatePipe} from "@angular/common";
 import {HomeTeamCardComponent} from "../../components/home-team-card/home-team-card.component";
 import {MarkdownComponent} from "ngx-markdown";
+import {differenceInSeconds} from "date-fns";
 
 @Component({
   selector: 'app-home',
@@ -31,7 +32,7 @@ export class HomeComponent {
 
   timeLeft = computed(() => {
     const event = this.upcomingEvents()[0];
-    return event ? event.dateTime.getTime() - Date.now() : 0;
+    return event ? differenceInSeconds(event.dateTime, Date.now()) : 0;
   });
 
   today = signal(Date.now());
