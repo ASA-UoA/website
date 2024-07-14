@@ -2,20 +2,18 @@
   <img class="h-[40%]" src="assets/images/logo-red.png"/>
 </div>
 
-<div>
+<div class="px-6 py-12 text-center">
   @if (upcomingEvents()[0]; as nextEvent) {
-
-    <h2>
+    <h2 class="text-xl">
       Next Event
     </h2>
-    <h1>
+    <h1 class="text-4xl font-extrabold">
       {{ nextEvent.name }}
     </h1>
     <p>
-      countdown
+      <app-countdown [timeLeft]="60*60*24 + 3"/>
     </p>
   }
-
 </div>
 
 <div>

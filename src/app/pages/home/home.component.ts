@@ -2,13 +2,15 @@ import {Component, computed, inject} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {PreloaderComponent} from "../../components/preloader/preloader.component";
 import {ApiService} from "../../services/api.service";
+import {CustomCountdownComponent} from "../../components/countdown/countdown.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     RouterLink,
-    PreloaderComponent
+    PreloaderComponent,
+    CustomCountdownComponent
   ],
   templateUrl: './home.component.html',
 })
