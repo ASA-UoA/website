@@ -5,6 +5,7 @@ import {ApiService} from "../../services/api.service";
 import {CustomCountdownComponent} from "../../components/countdown/countdown.component";
 import {DatePipe} from "@angular/common";
 import {HomeTeamCardComponent} from "../../components/home-team-card/home-team-card.component";
+import {MarkdownComponent} from "ngx-markdown";
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ import {HomeTeamCardComponent} from "../../components/home-team-card/home-team-c
     PreloaderComponent,
     CustomCountdownComponent,
     DatePipe,
-    HomeTeamCardComponent
+    HomeTeamCardComponent,
+    MarkdownComponent
   ],
   templateUrl: './home.component.html',
 })

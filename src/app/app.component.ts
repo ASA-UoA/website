@@ -19,6 +19,6 @@ export class AppComponent implements OnInit {
   api = inject(ApiService);
 
   ngOnInit(): void {
-    this.api.updateEvents();
+    this.api.updateData();
   }
 }

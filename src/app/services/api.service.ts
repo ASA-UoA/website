@@ -7,33 +7,34 @@ import {NgxCsvParser} from "ngx-csv-parser";
 
 const eventsApi = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSLnt3e8qGXsZb8vpVrKKGaABV1AGZDLAWblflGL9Lw0ZtpW59rk5fUnhBiHb6LejZpJmS3WOP4rM-o/pub?gid=0&single=true&output=csv'
 const teamApi = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSLnt3e8qGXsZb8vpVrKKGaABV1AGZDLAWblflGL9Lw0ZtpW59rk5fUnhBiHb6LejZpJmS3WOP4rM-o/pub?gid=1073982170&single=true&output=csv'
+const pageDataApi = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSLnt3e8qGXsZb8vpVrKKGaABV1AGZDLAWblflGL9Lw0ZtpW59rk5fUnhBiHb6LejZpJmS3WOP4rM-o/pub?gid=1452692267&single=true&output=csv'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  // Deps
-  http = inject(HttpClient);
-  parser = inject(NgxCsvParser);
-
   // Signals
   events = signal<Event[]>([]);
   eventsState = signal<LoadingStatuses>("loading");
   team = signal<Team[]>([]);
   teamState = signal<LoadingStatuses>("loading");
-
+  pageData = signal<{ [key: string]: string }>({});
+  pageDataState = signal<LoadingStatuses>("loading");
   allLoaded = computed(() => {
-    if (this.eventsState() === "loaded" && this.teamState() === "loaded") {
+    if (this.eventsState() === "loaded" && this.teamState() === "loaded" && this.pageDataState() === "loaded") {
       return "loaded";
     }
-    if (this.eventsState() === "error" || this.teamState() === "error") {
+    if (this.eventsState() === "error" || this.teamState() === "error" || this.pageDataState() === "error") {
       return "error";
     }
     return "loading";
   })
+  // Deps
+  private http = inject(HttpClient);
+  private parser = inject(NgxCsvParser);
 
   // Functions
-  updateEvents() {
+  updateData() {
     this.eventsState.set("loading");
     this.http.get(eventsApi, {
       responseType: 'arraybuffer'
@@ -58,6 +59,21 @@ export class ApiService {
         this.teamState.set("error");
       }
     });
+
+    this.http.get(pageDataApi, {
+      responseType: 'arraybuffer'
+    }).subscribe({
+      next: (data) => {
+        const pageData = this.parsePageDataCSV(data);
+        this.pageData.set(pageData);
+        console.log(pageData);
+        this.pageDataState.set("loaded");
+      },
+      error: () => {
+        this.pageDataState.set("error");
+      }
+    });
+
   }
 
   private parseEventCSV(arrayBuffer: ArrayBuffer): (Event)[] {
@@ -95,5 +111,16 @@ export class ApiService {
     });
   }
 
+  private parsePageDataCSV(arrayBuffer: ArrayBuffer): { [key: string]: string } {
+    const decoder = new TextDecoder('utf-8');
+    const csv = decoder.decode(new Uint8Array(arrayBuffer));
+    const data = this.parser.csvStringToArray(csv, ',');
+    const headers = this.parser.getHeaderArray(data);
+    let pageData: { [key: string]: string } = {};
+    data.slice(1).forEach((line) => {
+      pageData[line[headers.indexOf('id')]] = line[headers.indexOf('data')];
+    });
+    return pageData;
+  }
 
 }
