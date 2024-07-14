@@ -23,12 +23,12 @@
   }
 </div>
 
-<div class="px-6 mx-auto max-w-[800px] mb-20 space-y-8">
-  <div class="flex flex-col sm:flex-row justify-between items-center">
+<div class="px-6 mx-auto max-w-[800px] mb-20 flex flex-col gap-8 items-center sm:items-start">
+  <div class="flex flex-col sm:flex-row justify-between items-center w-full">
     <h2 class="text-2xl">
       Upcoming Events
     </h2>
-    <a [routerLink]="['events']" class="btn">
+    <a [routerLink]="['events']" class="btn hidden sm:block">
       View all {{ api.events().length }} events
     </a>
   </div>
@@ -55,6 +55,9 @@
       </div>
     }
   </div>
+  <a [routerLink]="['events']" class="btn inline-block  sm:hidden mx-auto">
+    View all {{ api.events().length }} events
+  </a>
 </div>
 
 <div class="px-6 mx-auto max-w-[800px] space-y-8">
