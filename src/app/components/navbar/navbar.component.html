@@ -15,8 +15,9 @@
   <div [ngClass]="open() ? 'text-lg' : 'btn'" [routerLinkActive]="'active'" [routerLink]="['/team']">
     Team
   </div>
-  <div [ngClass]="open() ? 'text-lg' : 'btn'">
+  <div (click)="openSignup.click()" [ngClass]="open() ? 'text-lg' : 'btn'">
     <a
+      #openSignup
       href="https://forms.gle/vuBU7Y6Hrhm88R6F8"
       target="_blank">
       Sign up!
