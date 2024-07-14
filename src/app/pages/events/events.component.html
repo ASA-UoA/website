@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-8 items-stretch mx-8">
 
-  @for (event of api.events(); track event.id; let even = $even) {
+  @for (event of sortedEvents(); track event.id; let even = $even) {
     <div
       [routerLink]="[event.id]"
 

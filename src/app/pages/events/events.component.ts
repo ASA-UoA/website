@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, computed, inject} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {DatePipe} from "@angular/common";
 import {RouterLink} from "@angular/router";
@@ -14,4 +14,8 @@ import {RouterLink} from "@angular/router";
 })
 export class EventsComponent {
   api = inject(ApiService);
+
+  sortedEvents = computed(() => {
+    return this.api.events().sort((a, b) => a.dateTime.getDate() - b.dateTime.getDate())
+  });
 }
