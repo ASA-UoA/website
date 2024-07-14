@@ -1,13 +1,17 @@
 @if (teamMember(); as teamMember) {
-  <img
-    [alt]="teamMember.name"
-    draggable="false"
-    class="rounded-full h-24 w-24 overflow-hidden mx-auto mb-2"
-    [src]="teamMember.image"/>
-  <h2 class="text-xl font-bold mb-0.5">
-    {{ teamMember.name }}
-  </h2>
-  <h3>
-    {{ teamMember.role }}
-  </h3>
+  <div class="flex flex-row sm:flex-col gap-2 items-center justify-evenly">
+    <img
+      [alt]="teamMember.name"
+      draggable="false"
+      class="rounded-full size-24 overflow-hidden aspect-square object-cover shadow-md"
+      [src]="teamMember.image ?? 'assets/images/profile-picture.jpg'"/>
+    <div>
+      <h2 class="text-xl font-bold mb-0.5">
+        {{ teamMember.name }}
+      </h2>
+      <h3>
+        {{ teamMember.role }}
+      </h3>
+    </div>
+  </div>
 }

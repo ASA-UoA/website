@@ -1,1 +1,26 @@
-<p>team works!</p>
+<div class="text-4xl text-center font-bold mt-10">
+  ASA Team
+</div>
+
+<div class="container space-y-8 mt-10">
+  <div class="text-2xl font-semibold">
+    Executives
+  </div>
+
+  <div class="flex flex-row flex-wrap gap-10 justify-evenly">
+    @for (member of executives(); track member.name) {
+      <app-home-team-card [teamMember]="member"/>
+    }
+  </div>
+
+  <div class="text-2xl font-semibold">
+    Committee
+  </div>
+
+  <div class="flex flex-row flex-wrap gap-10 justify-evenly">
+    @for (member of committee(); track member.name) {
+      <app-home-team-card [teamMember]="member"/>
+    }
+  </div>
+
+</div>
