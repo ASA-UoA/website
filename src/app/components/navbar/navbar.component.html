@@ -3,7 +3,7 @@
 
 <div
   (click)="open.set(false)"
-  [ngClass]="open() ? 'absolute top-full w-full bg-white left-0 p-6 rounded-b-3xl space-y-4 drop-shadow-md' : 'hidden sm:flex flex-row space-x-4'"
+  [ngClass]="open() ? 'absolute top-full w-full bg-white left-0 p-6 rounded-b-3xl flex flex-col gap-y-4 drop-shadow-md' : 'hidden sm:flex flex-row gap-x-4'"
 >
   <div [ngClass]="open() ? 'text-lg' : 'btn'" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="'active'"
        [routerLink]="['/']">
@@ -15,14 +15,11 @@
   <div [ngClass]="open() ? 'text-lg' : 'btn'" [routerLinkActive]="'active'" [routerLink]="['/team']">
     Team
   </div>
-  <div (click)="openSignup.click()" [ngClass]="open() ? 'text-lg' : 'btn'">
-    <a
-      #openSignup
-      href="https://forms.gle/vuBU7Y6Hrhm88R6F8"
-      target="_blank">
-      Sign up!
-    </a>
-  </div>
+  <a [ngClass]="open() ? 'text-lg' : 'btn'"
+     href="https://forms.gle/vuBU7Y6Hrhm88R6F8"
+     target="_blank">
+    Sign up!
+  </a>
 </div>
 
 <svg (click)="open.set(!open())" class="size-8 cursor-pointer sm:hidden block" fill="none" id="menu-button"
