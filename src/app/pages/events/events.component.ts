@@ -2,13 +2,15 @@ import {Component, computed, inject} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {DatePipe} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {MarkdownComponent} from "ngx-markdown";
 
 @Component({
   selector: 'app-events',
   standalone: true,
   imports: [
     DatePipe,
-    RouterLink
+    RouterLink,
+    MarkdownComponent
   ],
   templateUrl: './events.component.html',
 })

@@ -3,6 +3,7 @@ import {provideRouter, withComponentInputBinding, withViewTransitions} from '@an
 import {routes} from './app.routes';
 import {provideHttpClient} from "@angular/common/http";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+import {provideMarkdown} from "ngx-markdown";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -10,5 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withViewTransitions(), withComponentInputBinding()),
     provideHttpClient(),
     provideAnimationsAsync(),
+    provideMarkdown()
   ]
 };

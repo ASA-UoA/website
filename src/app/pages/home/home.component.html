@@ -24,51 +24,53 @@
 </div>
 
 <div class="px-6 mx-auto max-w-[800px] mb-20 space-y-8">
-  <div class="flex flex-row justify-between items-center">
+  <div class="flex flex-col sm:flex-row justify-between items-center">
     <h2 class="text-2xl">
       Upcoming Events
     </h2>
-    <a class="btn">
+    <a [routerLink]="['events']" class="btn">
       View all {{ api.events().length }} events
     </a>
   </div>
-  <div class="flex flex-row gap-4">
-    @for (event of upcomingEvents(); track event.id; let first = $first) {
+  <div class="flex flex-col sm:flex-row gap-4">
+    @for (event of upcomingEvents(); track event.id) {
       <div
         [routerLink]="['/events', event.id]"
-        class="bg-white rounded-2xl overflow-hidden shadow-md space-y-3 pb-4 max-w-72 hover:scale-105 active:scale-95 cursor-pointer hover:shadow-2xl transition">
+        class="bg-white rounded-2xl overflow-hidden shadow-md sm:pb-4 max-w-full sm:max-w-72 hover:scale-105 active:scale-95 cursor-pointer hover:shadow-2xl transition flex flex-row sm:flex-col gap-4">
         <img
           [alt]="event.name"
-          class="aspect-[3/2]"
+          class="aspect-[3/2] max-w-[40%] sm:max-w-full"
           draggable="false"
           [src]="event.image"
         />
-        <h3 class="text-xl font-bold mx-5">
-          {{ event.name }}
-        </h3>
-        <p class="mx-5">
-          {{ event.dateTime | date: 'EEEE d MMMM' }}
-        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+
+          <h3 class="sm:text-xl font-bold sm:mx-5">
+            {{ event.name }}
+          </h3>
+          <p class="sm:mx-5">
+            {{ event.dateTime | date: 'EEEE d MMMM' }}
+          </p>
+        </div>
+
       </div>
     }
   </div>
 </div>
 
 <div class="px-6 mx-auto max-w-[800px] mb-20 space-y-8">
-  <div class="flex flex-row justify-between items-center">
+  <div class="flex flex-col sm:flex-row justify-between items-center">
     <h2 class="text-2xl">
       Executive Team
     </h2>
-    <a class="btn">
+    <a [routerLink]="['team']" class="btn">
       View all team members
     </a>
   </div>
-  @if (president(); as president) {
-    <div>
+  <div class="flex flex-row gap-4 justify-evenly">
+    @if (president(); as president) {
       <app-home-team-card [teamMember]="president"/>
-    </div>
-  }
-  <div class="flex flex-row gap-4 justify-evenly mt-3">
+    }
     @for (member of restOfTeam(); track member.id) {
       <app-home-team-card [teamMember]="member"/>
     }
