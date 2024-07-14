@@ -1,15 +1,51 @@
-<img class="h-[40px]" src="assets/images/logo-red.png"/>
-<div [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="'active'" [routerLink]="['/']" class="btn ml-auto">
-  Home
+<img class="h-[40px] mr-auto" src="assets/images/logo-red.png"/>
+
+<div
+  (click)="open.set(false)"
+  [ngClass]="open() ? 'absolute top-full w-full bg-white left-0 p-6 rounded-b-3xl space-y-4 drop-shadow-md' : 'hidden sm:flex flex-row space-x-4'"
+>
+  <div [ngClass]="open() ? 'text-lg' : 'btn'" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="'active'"
+       [routerLink]="['/']">
+    Home
+  </div>
+  <div [ngClass]="open() ? 'text-lg' : 'btn'" [routerLinkActive]="'active'" [routerLink]="['/events']">
+    Events
+  </div>
+  <div [ngClass]="open() ? 'text-lg' : 'btn'" [routerLinkActive]="'active'" [routerLink]="['/team']">
+    Team
+  </div>
+  <div [ngClass]="open() ? 'text-lg' : 'btn'">
+    <a
+      href="https://docs.google.com/document/d/1_KaMuSjlQd_eWI54Fv__c7LTDWmeziLsh9Kj0ayjmYE/edit?usp=drive_link"
+      target="_blank">
+      Sign up!
+    </a>
+  </div>
 </div>
-<div [routerLinkActive]="'active'" [routerLink]="['/events']" class="btn">
-  Events
-</div>
-<div [routerLinkActive]="'active'" [routerLink]="['/team']" class="btn">
-  Team
-</div>
-<a class="btn"
-   href="https://docs.google.com/document/d/1_KaMuSjlQd_eWI54Fv__c7LTDWmeziLsh9Kj0ayjmYE/edit?usp=drive_link"
-   target="_blank">
-  Sign up!
-</a>
+
+<svg (click)="open.set(!open())" class="size-8 cursor-pointer sm:hidden block" fill="none" id="menu-button"
+     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+
+<!--@if (open()) {-->
+<!--    <div [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="'active'" [routerLink]="['/']"-->
+<!--         (click)="open.set(false)" class="text-lg">-->
+<!--      Home-->
+<!--    </div>-->
+<!--    <div [routerLinkActive]="'active'" [routerLink]="['/events']" (click)="open.set(false)" class="text-lg">-->
+<!--      Events-->
+<!--    </div>-->
+<!--    <div [routerLinkActive]="'active'" [routerLink]="['/team']" (click)="open.set(false)" class="text-lg">-->
+<!--      Team-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <a-->
+<!--        (click)="open.set(false)" class="text-lg"-->
+<!--        href="https://docs.google.com/document/d/1_KaMuSjlQd_eWI54Fv__c7LTDWmeziLsh9Kj0ayjmYE/edit?usp=drive_link"-->
+<!--        target="_blank">-->
+<!--        Sign up!-->
+<!--      </a>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--}-->

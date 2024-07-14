@@ -12,7 +12,7 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
   standalone: true,
   imports: [RouterOutlet, DatePipe, PreloaderComponent, ErrorComponent, NavbarComponent],
   templateUrl: './app.component.html',
-  animations: [FadeInOut('0ms', '300ms ease-out', false)]
+  animations: [FadeInOut('0ms', '500ms ease-out', false)]
 })
 export class AppComponent implements OnInit {
   // Deps
