@@ -24,4 +24,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ng deploy --base-href=/website/ --repo=https://github.com/ASA-UoA/website.git;
+          npx angular-cli-ghpages --base-href=/website/ --repo=https://github.com/ASA-UoA/website.git;
