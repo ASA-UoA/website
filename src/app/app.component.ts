@@ -6,11 +6,12 @@ import {PreloaderComponent} from "./components/preloader/preloader.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {FadeInOut} from "./animations/fade-in-out";
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import {FooterComponent} from "./components/footer/footer.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, DatePipe, PreloaderComponent, ErrorComponent, NavbarComponent],
+  imports: [RouterOutlet, DatePipe, PreloaderComponent, ErrorComponent, NavbarComponent, FooterComponent],
   templateUrl: './app.component.html',
   animations: [FadeInOut('0ms', '500ms ease-out', false)]
 })
