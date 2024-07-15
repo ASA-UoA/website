@@ -82,7 +82,7 @@
       View all team members
     </a>
   </div>
-  <div class="flex flex-row gap-4 justify-evenly">
+  <div class="flex flex-row flex-wrap gap-10 justify-evenly">
     @if (president(); as president) {
       <app-home-team-card [teamMember]="president"/>
     }
