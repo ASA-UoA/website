@@ -52,7 +52,7 @@
             {{ event.name }}
           </h3>
           <p>
-            in {{ formatDistance(event.dateTime, Date.now()) }} ({{ event.dateTime | date: 'MMMM dd' }})
+            in {{ formatDistance(event.dateTime, today()) }} ({{ event.dateTime | date: 'MMMM dd' }})
           </p>
           <hr class="my-2"/>
           <markdown class="line-clamp-3" [data]="event.description"/>

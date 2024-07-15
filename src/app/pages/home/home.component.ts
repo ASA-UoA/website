@@ -1,4 +1,4 @@
-import {Component, computed, inject, signal} from '@angular/core';
+import {Component, computed, inject} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {PreloaderComponent} from "../../components/preloader/preloader.component";
 import {ApiService} from "../../services/api.service";
@@ -6,7 +6,7 @@ import {CustomCountdownComponent} from "../../components/countdown/countdown.com
 import {DatePipe} from "@angular/common";
 import {HomeTeamCardComponent} from "../../components/home-team-card/home-team-card.component";
 import {MarkdownComponent} from "ngx-markdown";
-import {differenceInSeconds} from "date-fns";
+import {differenceInSeconds, isPast, isToday} from "date-fns";
 
 @Component({
   selector: 'app-home',
@@ -35,7 +35,14 @@ export class HomeComponent {
     return event ? differenceInSeconds(event.dateTime, Date.now()) : 0;
   });
 
-  today = signal(Date.now());
+  todaysEvent = computed(() => {
+    return this.api.events().find((event) => isToday(event.dateTime));
+  });
+
+  todaysEventStarted = computed(() => {
+    const event = this.todaysEvent();
+    return event ? isPast(event.dateTime) : false;
+  });
 
   president = computed(() => {
     return this.api.team().find((member) => member.role === 'President');

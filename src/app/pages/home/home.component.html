@@ -4,22 +4,31 @@
 </div>
 
 <div class="px-6 py-12 text-center">
-  @if (upcomingEvents()[0]; as nextEvent) {
-    @if (nextEvent.dateTime.getDate() === today()) {
-      <h2 class="text-2xl">
-        Today's Event
-      </h2>
-    } @else {
-      <h2 class="text-2xl">
-        Next Event
-      </h2>
-      <h1 class="text-4xl font-extrabold">
-        {{ nextEvent.name }}
-      </h1>
-      <p>
-        <app-countdown [timeLeft]="timeLeft()"/>
-      </p>
-    }
+  @if (todaysEvent(); as event) {
+    <h2 class="text-2xl">
+      Today's Event
+    </h2>
+    <h1 class="text-4xl font-extrabold">
+      {{ event.name }}
+    </h1>
+    <p>
+      @if (todaysEventStarted()) {
+        Event has started!
+      } @else {
+        Event starts soon {{ event.dateTime | date: 'h:mm a' }}
+      }
+    </p>
+
+  } @else if (upcomingEvents()[0]) {
+    <h2 class="text-2xl">
+      Next Event
+    </h2>
+    <h1 class="text-4xl font-extrabold">
+      {{ upcomingEvents()[0].name }}
+    </h1>
+    <p>
+      <app-countdown [timeLeft]="timeLeft()"/>
+    </p>
   }
 </div>
 

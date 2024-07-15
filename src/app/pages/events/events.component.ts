@@ -22,7 +22,9 @@ export class EventsComponent {
   sortedEvents = computed(() => {
     return this.api.events().sort((a, b) => a.dateTime.getTime() - b.dateTime.getTime());
   });
+
+  today = computed(() => Date.now());
+
   protected readonly formatDistance = formatDistance;
-  protected readonly Date = Date;
 }
 
