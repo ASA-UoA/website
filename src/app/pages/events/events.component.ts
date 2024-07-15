@@ -1,6 +1,6 @@
 import {Component, computed, inject} from '@angular/core';
 import {ApiService} from '../../services/api.service';
-import {DatePipe} from "@angular/common";
+import {DatePipe, NgClass} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {MarkdownComponent} from "ngx-markdown";
 import {formatDistance} from "date-fns";
@@ -11,7 +11,8 @@ import {formatDistance} from "date-fns";
   imports: [
     DatePipe,
     RouterLink,
-    MarkdownComponent
+    MarkdownComponent,
+    NgClass
   ],
   templateUrl: './events.component.html',
 })
