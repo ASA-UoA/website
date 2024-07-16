@@ -18,7 +18,7 @@ const CountdownTimeUnits: Array<[string, number]> = [
     CountdownComponent
   ],
   template: '@if (config){<countdown #cd [config]="config" />}',
-  styles: ``
+  styleUrl: 'countdown.component.scss'
 })
 export class CustomCountdownComponent implements OnInit {
   timeLeft = input.required<number>();
