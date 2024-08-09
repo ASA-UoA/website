@@ -3,7 +3,8 @@ import {ApiService} from '../../services/api.service';
 import {DatePipe, NgClass} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {MarkdownComponent} from "ngx-markdown";
-import {formatDistanceToNow, isFuture} from "date-fns";
+import {isFuture} from "date-fns";
+import {EventCardComponent} from "../../components/event-card/event-card.component";
 
 @Component({
   selector: 'app-events',
@@ -12,7 +13,8 @@ import {formatDistanceToNow, isFuture} from "date-fns";
     DatePipe,
     RouterLink,
     MarkdownComponent,
-    NgClass
+    NgClass,
+    EventCardComponent
   ],
   templateUrl: './events.component.html',
 })
@@ -24,7 +26,5 @@ export class EventsComponent {
     // only show events that are in the future
     return sorted.filter(event => isFuture(event.dateTime));
   });
-
-  protected readonly formatDistanceToNow = formatDistanceToNow;
 }
 
