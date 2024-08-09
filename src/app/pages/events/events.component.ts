@@ -3,7 +3,7 @@ import {ApiService} from '../../services/api.service';
 import {DatePipe, NgClass} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {MarkdownComponent} from "ngx-markdown";
-import {formatDistance, isFuture} from "date-fns";
+import {formatDistanceToNow, isFuture} from "date-fns";
 
 @Component({
   selector: 'app-events',
@@ -25,8 +25,6 @@ export class EventsComponent {
     return sorted.filter(event => isFuture(event.dateTime));
   });
 
-  today = computed(() => Date.now());
-
-  protected readonly formatDistance = formatDistance;
+  protected readonly formatDistanceToNow = formatDistanceToNow;
 }
 
