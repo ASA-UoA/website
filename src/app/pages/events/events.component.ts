@@ -3,7 +3,7 @@ import {ApiService} from '../../services/api.service';
 import {DatePipe, NgClass} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {MarkdownComponent} from "ngx-markdown";
-import {formatDistance} from "date-fns";
+import {formatDistance, isFuture} from "date-fns";
 
 @Component({
   selector: 'app-events',
@@ -20,7 +20,9 @@ export class EventsComponent {
   api = inject(ApiService);
 
   sortedEvents = computed(() => {
-    return this.api.events().sort((a, b) => a.dateTime.getTime() - b.dateTime.getTime());
+    const sorted = this.api.events().sort((a, b) => a.dateTime.getTime() - b.dateTime.getTime());
+    // only show events that are in the future
+    return sorted.filter(event => isFuture(event.dateTime));
   });
 
   today = computed(() => Date.now());
