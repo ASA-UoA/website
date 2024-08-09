@@ -24,3 +24,7 @@
 .reset-tw * {
   all: revert !important;
 }
+
+router-outlet + * {
+  @apply flex-1;
+}
